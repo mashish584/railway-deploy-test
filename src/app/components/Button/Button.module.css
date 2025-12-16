@@ -1,0 +1,110 @@
+/* Base button styles */
+.button {
+	min-width: 150px;
+	height: 60px;
+	padding: 0 36px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-family: var(--font-primary);
+	font-weight: 600;
+	font-style: normal;
+	font-size: var(--button-text-ds);
+	line-height: 1.41;
+	letter-spacing: -0.4px;
+	border: none;
+	cursor: pointer;
+	transition: all 0.2s ease-in-out;
+	border-radius: 128px;
+}
+
+/* Disabled state */
+.button:disabled {
+	cursor: not-allowed;
+	opacity: 0.8;
+}
+
+/* Primary variant */
+.primary {
+	background-color: var(--primary);
+	color: var(--secondary);
+}
+
+.primary:hover:not(:disabled) {
+	background-color: var(--primary);
+	transform: translateY(-1px);
+	box-shadow: 10px 20px 18px 0px rgba(0, 0, 0, 0.15);
+}
+
+/* Secondary variant */
+.secondary {
+	background-color: var(--secondary);
+	color: var(--white);
+}
+
+.secondary:hover:not(:disabled) {
+	background-color: var(--secondary);
+	transform: translateY(-1px);
+	box-shadow: 10px 20px 18px 0px rgba(0, 0, 0, 0.15);
+	filter: brightness(1.05);
+}
+
+.light {
+	background-color: var(--white);
+	color: var(--secondary);
+}
+
+.light:hover:not(:disabled) {
+	background-color: var(--white);
+	transform: translateY(-1px);
+	box-shadow: 10px 20px 18px 0px rgba(0, 0, 0, 0.15);
+}
+
+/* Loading spinner */
+.spinner {
+	width: 20px;
+	height: 20px;
+	border: 2px solid transparent;
+	border-radius: 50%;
+	animation: spin 1s linear infinite;
+}
+
+.spinnerPrimary {
+	border-top: 2px solid var(--secondary);
+}
+
+.spinnerSecondary {
+	border-top: 2px solid var(--white);
+}
+
+/* Spin animation keyframes */
+@keyframes spin {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.button {
+		min-width: 120px;
+		height: 48px;
+		font-size: var(--button-text-mb);
+		padding: 0 25px;
+	}
+	.phone-icon {
+		width: 12px !important;
+		height: 12px !important;
+	}
+
+	.email-icon {
+		width: 17px !important;
+		height: 17px !important;
+	}
+
+	.content {
+		gap: 7px !important;
+	}
+}

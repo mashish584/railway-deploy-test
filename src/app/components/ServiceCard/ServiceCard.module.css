@@ -1,0 +1,130 @@
+.container {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	gap: 65px;
+}
+
+.reverse {
+	flex-direction: row-reverse;
+}
+
+.content {
+	display: flex;
+	flex-direction: column;
+	gap: 101px;
+	width: 532px;
+	flex-shrink: 0;
+}
+
+.info {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	width: 100%;
+}
+
+.serviceNumber {
+	font-family: var(--font-heading);
+	font-style: normal;
+	font-weight: 800;
+	font-size: var(--serviceCard-tag-ds);
+	line-height: 1.15;
+	letter-spacing: -0.4px;
+	color: var(--section-label-color, var(--hightlight-text));
+}
+
+.serviceName {
+	font-family: var(--font-heading);
+	font-style: normal;
+	font-weight: 700;
+	font-size: var(--serviceCard-serviceName-ds);
+	line-height: 1.15;
+	letter-spacing: -0.84px;
+	color: var(--service-name-color, var(--primary-text));
+}
+
+.serviceDescription {
+	font-family: var(--font-body);
+	font-style: normal;
+	font-weight: 400;
+	font-size: var(--serviceCard-description-ds);
+	line-height: 1.41;
+	letter-spacing: -0.4px;
+	color: var(--paragraph-color, var(--primary-text));
+	width: 532px;
+}
+
+.cta {
+	font-family: var(--font-heading);
+	font-style: normal;
+	font-weight: 600;
+	font-size: var(--serviceCard-cta-ds);
+	line-height: 1.15;
+	letter-spacing: -0.4px;
+	color: var(--cta-color, var(--primary-text));
+	text-decoration: underline;
+	width: 100%;
+}
+
+.imageContainer {
+	position: relative;
+	height: 441px;
+	width: 660px;
+	border-radius: 20px;
+	overflow: hidden;
+	flex-shrink: 0;
+	background-color: #d9d9d9;
+}
+
+.image {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: 50% 50%;
+	border-radius: 20px;
+}
+
+@media screen and (max-width: 1024px) {
+	.container {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 32px;
+	}
+
+	.content {
+		width: 100%;
+		gap: 32px;
+	}
+
+	.imageContainer {
+		width: 100%;
+		height: 400px;
+	}
+
+	.serviceDescription {
+		width: 100%;
+	}
+}
+
+@media screen and (max-width: 480px) {
+	.imageContainer {
+		height: 291px;
+	}
+
+	.serviceName {
+		font-size: var(--serviceCard-serviceName-mb);
+	}
+
+	.serviceDescription {
+		font-size: var(--serviceCard-description-mb);
+	}
+
+	.cta {
+		font-size: var(--serviceCard-cta-mb);
+	}
+}

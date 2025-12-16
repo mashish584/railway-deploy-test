@@ -1,0 +1,145 @@
+/* Blogs container */
+.blogsContainer {
+	display: flex;
+	flex-direction: column;
+	gap: 60px;
+	align-items: flex-start;
+	position: relative;
+	width: 90%;
+	margin: 0 auto;
+}
+
+/* Header container with title and button */
+.headerContainer {
+	display: flex;
+	align-items: flex-end;
+	justify-content: space-between;
+	position: relative;
+	width: 100%;
+}
+
+/* Header section styling */
+.headerSection {
+	width: 660px;
+}
+
+.blogsView {
+	position: relative;
+	width: 100%;
+}
+
+/* Cards container with horizontal scroll */
+.cardsContainer {
+	height: 353px;
+	overflow-x: auto;
+	overflow-y: hidden;
+	position: relative;
+	width: 100%;
+	scrollbar-width: none; /* Firefox */
+	-ms-overflow-style: none; /* Internet Explorer 10+ */
+	scroll-behavior: smooth;
+}
+
+/* Ensure gradients stay fixed at edges of container */
+.cardsContainer > .gradientLeft,
+.cardsContainer > .gradientRight {
+	position: absolute;
+	top: 0;
+	height: 100%;
+	z-index: 10;
+	pointer-events: none;
+}
+
+.cardsContainer::-webkit-scrollbar {
+	display: none; /* WebKit */
+}
+
+/* Cards wrapper for horizontal scrolling */
+.cardsWrapper {
+	display: flex;
+	gap: 24px;
+	align-items: center;
+	height: 100%;
+	width: max-content;
+	padding: 0 20px;
+}
+
+/* Individual blog card styling */
+.cardsWrapper > * {
+	flex-shrink: 0;
+	width: 306px;
+	height: 353px;
+}
+
+/* Gradient overlays for smooth edges - fixed at container edges */
+.gradientLeft {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 91px;
+	height: 100%;
+	background: linear-gradient(to right, var(--color-white), rgba(255, 255, 255, 0));
+	z-index: 10;
+	pointer-events: none;
+}
+
+.gradientRight {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 91px;
+	height: 100%;
+	background: linear-gradient(to left, var(--color-white), rgba(255, 255, 255, 0));
+	z-index: 10;
+	pointer-events: none;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+	.headerSection {
+		flex: 0.9;
+	}
+	.headerSection h2 {
+		font-size: var(--blogs-headerTitle-tb);
+	}
+
+	.headerContainer button {
+		font-size: var(--blogs-button-tb);
+		padding: 0 25px;
+		height: 50px;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.blogsContainer {
+		gap: 32px;
+		width: 100%;
+	}
+	.headerContainer {
+		width: 80%;
+		margin: 0 auto;
+	}
+	.headerContainer button {
+		display: none;
+	}
+	.headerSection {
+		text-align: center;
+	}
+}
+
+@media screen and (max-width: 480px) {
+	/* Remove style when we've multiple blogs */
+	.cardsContainer {
+		display: flex;
+		justify-content: center;
+	}
+
+	.headerContainer {
+		width: 90%;
+	}
+
+	.cardsWrapper > * {
+		flex-shrink: 0;
+		width: 290px;
+		height: 330px;
+	}
+}

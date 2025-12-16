@@ -1,26 +1,330 @@
 @import "tailwindcss";
 
+/* Font declarations are now handled by Next.js font optimization in layout.tsx */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+	--white: #ffffff;
+	--black: #171717;
+	--primary: #deff83;
+	--secondary: #134021;
+	--dark-green: #0f2d1a;
+	--light-green: #b1cf5f;
+	--hightlight-text: #b1cf5f;
+	--rating-card-bg: #f3f3f3;
+	--gray: #d9d9d9;
+	--light-gray: #ededed;
+
+        /* Font Family Variables - Using locally available fallbacks to avoid build-time fetches */
+        --font-open-sans: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        --font-primary:
+                var(--font-open-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        --font-heading:
+                var(--font-rebond-grotesque, "Rebond Grotesque"), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                "Helvetica Neue", Arial, sans-serif;
+	--font-body: var(--font-primary);
+
+	/* Viewport Variables */
+	--viewport-mobile: 480px;
+	--viewport-tablet: 768px;
+	--viewport-desktop: 1024px;
+	--viewport-large: 1280px;
+	--viewport-xl: 1536px;
+
+	/* Component Font-Size Variables */
+	/* Accordion Component */
+	--accordion-itemTitle-ds: 20px;
+	--accordion-itemTitle-tb: 20px;
+	--accordion-itemTitle-mb: 16px;
+	--accordion-itemDescription-ds: 16px;
+	--accordion-itemDescription-mb: 14px;
+
+	/* BlogCard Component */
+	--blogCard-date-ds: 16px;
+	--blogCard-date-mb: 14px;
+	--blogCard-title-ds: 22px;
+	--blogCard-title-mb: 16px;
+	--blogCard-readMore-ds: 16px;
+	--blogCard-readMore-mb: 14px;
+	--blogCard-author-ds: 16px;
+	--blogCard-heading-ds: 28px;
+
+	/* Button Component */
+	--button-text-ds: 20px;
+	--button-text-mb: 14px;
+
+	/* ContactForm Component */
+	--contactForm-title-ds: 32px;
+	--contactForm-title-tb: 30px;
+	--contactForm-title-mb: 25px;
+	--contactForm-button-tb: 18px;
+	--contactForm-label-mb: 13px;
+
+	/* ContactFormFooter Component */
+	--contactFormFooter-infoTitle-tb: 18px;
+	--contactFormFooter-button-tb: 14px;
+	--contactFormFooter-description-mb: 16px;
+
+	/* Footer Component */
+	--footer-navLink-ds: 20px;
+	--footer-link-ds: 20px;
+	--footer-copyright-ds: 20px;
+	--footer-navLink-mb: 18px;
+	--footer-link-mb: 18px;
+	--footer-copyright-mb: 16px;
+
+	/* Header Component */
+	--header-navLink-ds: 20px;
+
+	/* HeaderSection Component */
+	--headerSection-mainTitle-ds: 56px;
+	--headerSection-mainTitle-tb: 42px;
+	--headerSection-mainTitle-mb: 30px;
+	--headerSection-subtitle-ds: 18px;
+	--headerSection-subtitle-tb: 18px;
+	--headerSection-subtitle-mb: 14px;
+
+	/* HeroContent Component */
+	--heroContent-tag-ds: 16px;
+	--heroContent-tag-tb: 16px;
+	--heroContent-tag-mb: 14px;
+	--heroContent-heading-ds: 56px;
+	--heroContent-heading-tb: 48px;
+	--heroContent-heading-mb: 36px;
+	--heroContent-description-ds: 18px;
+	--heroContent-description-tb: 18px;
+	--heroContent-description-mb: 14px;
+
+	/* Info Component */
+	--info-title-ds: 28px;
+	--info-title-tb: 26px;
+	--info-title-mb: 18px;
+	--info-title-col-ds: 22px;
+	--info-title-col-tb: 22px;
+	--info-title-col-mb: 18px;
+	--info-description-ds: 18px;
+
+	/* Input Component */
+	--input-label-ds: 18px;
+	--input-input-ds: 16px;
+	--input-placeholder-ds: 16px;
+
+	/* LocalPestExpert Component */
+	--localPestExpert-description-ds: 20px;
+	--localPestExpert-infoText-ds: 17px;
+	--localPestExpert-mapPlaceholder-tb: 18px;
+	--localPestExpert-infoText-tb: 18px;
+	--localPestExpert-mapPlaceholder-mb: 16px;
+	--localPestExpert-infoText-mb: 16px;
+
+	/* MobileNavigation Component */
+	--mobileNavigation-navLink-ds: 18px;
+	--mobileNavigation-additionalLink-ds: 14px;
+	--mobileNavigation-navLink-mb: 16px;
+	--mobileNavigation-additionalLink-mb: 13px;
+
+	/* PesticideInfo Component */
+	--pesticideInfo-name-ds: 24px;
+	--pesticideInfo-name-mb: 24px;
+	--pesticideInfo-description-ds: 15px;
+	--pesticideInfo-description-mb: 14px;
+	--pesticideInfo-learnMoreText-ds: 16px;
+	--pesticideInfo-learnMoreText-mb: 16px;
+
+	/* PestInfo Component */
+	--pestInfo-tag-ds: 20px;
+	--pestInfo-pestName-ds: 36px;
+	--pestInfo-pestName-mb: 24px;
+	--pestInfo-paragraph-ds: 18px;
+	--pestInfo-paragraph-mb: 14px;
+
+	/* Process Component */
+	--process-stepNumber-ds: 24px;
+	--process-stepTitle-ds: 28px;
+	--process-stepTitle-mb: 22px;
+	--process-stepNumber-mb: 20px;
+	--process-stepDescription-ds: 16px;
+	--process-stepDescription-mb: 14px;
+
+	/* ProcessCheckInfo Component */
+	--processCheckInfo-text-ds: 20px;
+	--processCheckInfo-text-mb: 16px;
+
+	/* RatingCard Component */
+	--ratingCard-name-ds: 18.133px;
+	--ratingCard-name-mb: 14px;
+	--ratingCard-designation-ds: 13.6px;
+	--ratingCard-designation-mb: 10px;
+	--ratingCard-reviewText-ds: 14px;
+	--ratingCard-reviewText-mb: 14px;
+	--ratingCard-postedOn-ds: 13.6px;
+	--ratingCard-postedOn-mb: 10px;
+
+	/* ServiceCard Component */
+	--serviceCard-tag-ds: 20px;
+	--serviceCard-serviceName-ds: 42px;
+	--serviceCard-description-ds: 18px;
+	--serviceCard-cta-ds: 20px;
+	--serviceCard-serviceName-mb: 32px;
+	--serviceCard-description-mb: 16px;
+	--serviceCard-cta-mb: 16px;
+
+	/* Home Components */
+	/* BestWeOffer Component */
+	--bestWeOffer-featureTitle-ds: 22px;
+	--bestWeOffer-featureTitle-tb: 22px;
+	--bestWeOffer-featureTitle-mb: 22px;
+	--bestWeOffer-featureDescription-ds: 16px;
+	--bestWeOffer-featureDescription-tb: 15px;
+	--bestWeOffer-featureDescription-mb: 14px;
+	--bestWeOffer-headerTitle-tb: 32px;
+	--bestWeOffer-headerDescription-tb: 18px;
+
+	/* Blogs Component */
+	--blogs-headerTitle-tb: 46px;
+	--blogs-button-tb: 16px;
+
+	/* BookConsultation Component */
+	--bookConsultation-username-mb: 18px;
+	--bookConsultation-designation-mb: 13.6px;
+
+	/* HomeJumbotron Component */
+	--homeJumbotron-button-tb: 14px;
+
+	/* HowWeWork Component */
+	--howWeWork-headerTitle-tb: 36px;
+	--howWeWork-subTitle-tb: 16px;
+	--howWeWork-infoTitle-tb: 24px;
+	--howWeWork-infoDescription-tb: 16px;
+	--howWeWork-button-tb: 16px;
+	--howWeWork-headerTitle-mb: 32px;
+	--howWeWork-infoTitle-mb: 22px;
+	--howWeWork-infoDescription-mb: 14px;
+
+	/* Pest Study Pages */
+	--pestStudy-infoItem-ds: 18px;
+	--pestStudy-infoItem-tb: 18px;
+	--pestStudy-infoItem-mb: 16px;
+	--pestStudy-infoItem-heading-ds: 20px;
+	--pestStudy-infoItem-heading-tb: 18px;
+	--pestStudy-infoItem-heading-mb: 14px;
+
+	/* Service Study Pages */
+	--serviceStudy-infoItem-ds: 18px;
+	--serviceStudy-infoItem-tb: 18px;
+	--serviceStudy-infoItem-mb: 16px;
+
+	/* Contact us */
+	--contactUs-infoItem-ds: 18px;
+	--contactUs-infoItem-tb: 18px;
+	--contactUs-infoItem-mb: 16px;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+	--color-background: var(--white);
+	--color-foreground: var(--black);
+	--font-sans: var(--font-open-sans);
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+	:root {
+		--background: var(--black);
+		--foreground: var(--gray);
+	}
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+	background: var(----color-background);
+	color: var(----color-foreground);
+	font-family: var(--font-body);
+	overflow-x: hidden;
+}
+
+@keyframes spin {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+/* Print Styles */
+@media print {
+	/* Hide navigation and non-essential elements */
+	header,
+	nav,
+	footer:not([data-print-visible]),
+	button:not([data-print-visible]),
+	[data-no-print] {
+		display: none !important;
+	}
+
+	/* Optimize body for print */
+	body {
+		background: white !important;
+		color: black !important;
+		font-size: 12pt;
+		line-height: 1.4;
+	}
+
+	/* Ensure proper page breaks */
+	* {
+		box-sizing: border-box;
+	}
+
+	/* Optimize images for print */
+	img {
+		max-width: 100% !important;
+		height: auto !important;
+		page-break-inside: avoid;
+	}
+
+	/* Prevent page breaks in critical sections */
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		page-break-after: avoid;
+	}
+
+	/* Optimize links for print */
+	a {
+		color: inherit !important;
+		text-decoration: underline;
+	}
+
+	a[href^="http"]:after {
+		content: " (" attr(href) ")";
+		font-size: 0.8em;
+	}
+
+	/* Remove shadows and effects for print */
+	* {
+		box-shadow: none !important;
+		text-shadow: none !important;
+	}
+
+	/* Optimize Container component for print */
+	.w-full {
+		width: 100% !important;
+	}
+
+	.max-w-screen-2xl {
+		max-width: 100% !important;
+	}
+
+	.mx-auto {
+		margin-left: 0 !important;
+		margin-right: 0 !important;
+	}
+
+	.min-h-screen {
+		min-height: auto !important;
+	}
+
+	.bg-white {
+		background-color: white !important;
+	}
 }

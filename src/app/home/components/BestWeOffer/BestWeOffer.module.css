@@ -1,0 +1,153 @@
+.section {
+	display: flex;
+	gap: 48px;
+	align-items: center;
+	position: relative;
+	width: 90%;
+	margin: 0 auto;
+}
+
+.headerSection {
+	width: 70%;
+}
+
+.imageContainer,
+.imageContainerMobile {
+	height: 607px;
+	position: relative;
+	border-radius: 20px;
+	flex-shrink: 0;
+	width: 392px;
+}
+
+.imageContainerMobile {
+	display: none;
+}
+
+.content {
+	display: flex;
+	flex-direction: column;
+	gap: 60px;
+	align-items: flex-start;
+	position: relative;
+	flex-shrink: 0;
+	flex: 1;
+}
+
+.header {
+	display: flex;
+	flex-direction: column;
+	gap: 18px;
+	align-items: flex-start;
+	justify-content: center;
+	position: relative;
+	flex-shrink: 0;
+	width: 553px;
+}
+
+.features {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 39px 53px;
+	align-items: flex-start;
+	position: relative;
+	flex-shrink: 0;
+	width: 100%;
+}
+
+.feature {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+	align-items: flex-start;
+	position: relative;
+	flex-shrink: 0;
+	color: var(--secondary);
+	width: 100%;
+}
+
+.featureTitle {
+	font-family: var(--font-primary);
+	font-weight: 600;
+	font-size: var(--bestWeOffer-featureTitle-ds);
+	line-height: 1.15;
+	letter-spacing: -0.48px;
+	color: var(--secondary);
+	margin: 0;
+}
+
+.featureDescription {
+	font-family: var(--font-secondary);
+	font-weight: 400;
+	font-size: var(--bestWeOffer-featureDescription-ds);
+	line-height: 1.41;
+	letter-spacing: -0.4px;
+	color: var(--secondary);
+	margin: 0;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+	.headerSection {
+		width: 100%;
+	}
+
+	.headerSection h2 {
+		font-size: var(--bestWeOffer-headerTitle-tb);
+	}
+
+	.headerSection p {
+		font-size: var(--bestWeOffer-headerDescription-tb);
+	}
+
+	.content {
+		width: 100%;
+	}
+
+	.features {
+		grid-template-columns: 1fr;
+		gap: 32px;
+	}
+
+	.featureTitle {
+		font-size: var(--bestWeOffer-featureTitle-tb);
+	}
+
+	.featureDescription {
+		font-size: var(--bestWeOffer-featureDescription-tb);
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.imageContainer {
+		display: none;
+	}
+
+	.headerSection {
+		width: 100%;
+	}
+
+	.content {
+		width: 100%;
+		gap: 32px;
+	}
+
+	.imageContainerMobile {
+		display: block;
+		width: 100%;
+		height: 280px;
+		overflow: hidden;
+	}
+
+	.features {
+		grid-template-columns: 1fr;
+		gap: 32px;
+	}
+
+	.featureTitle {
+		font-size: var(--bestWeOffer-featureTitle-mb);
+	}
+
+	.featureDescription {
+		font-size: var(--bestWeOffer-featureDescription-mb);
+	}
+}

@@ -1,0 +1,96 @@
+.content {
+	display: flex;
+	flex-direction: column;
+	gap: 39px;
+	width: 550px;
+}
+
+.textSection {
+	display: flex;
+	flex-direction: column;
+	gap: 18px;
+	width: 100%;
+}
+
+.tagAndHeading {
+	display: flex;
+	flex-direction: column;
+	gap: 14px;
+}
+
+.tag {
+	font-family: var(--font-primary);
+	font-weight: 400;
+	font-size: var(--heroContent-tag-ds);
+	line-height: 1.41;
+	letter-spacing: -0.36px;
+	color: var(--color-white);
+}
+
+.heading {
+	font-family: var(--font-heading);
+	font-weight: 700;
+	font-size: var(--heroContent-heading-ds);
+	line-height: 1.04;
+	letter-spacing: -1.2px;
+	color: var(--color-white);
+}
+
+.highlighted {
+	color: var(--hightlight-text);
+}
+
+.description {
+	font-family: var(--font-primary);
+	font-weight: 400;
+	font-size: var(--heroContent-description-ds);
+	line-height: 1.41;
+	letter-spacing: -0.4px;
+	color: var(--color-white);
+	white-space: pre-line;
+}
+
+.buttonSection {
+	display: flex;
+	gap: 16px;
+	align-items: flex-start;
+}
+
+@media screen and (max-width: 1280px) {
+	.content {
+		width: 45%;
+	}
+
+	.tag,
+	.description {
+		font-size: var(--heroContent-tag-tb);
+	}
+
+	.heading {
+		font-size: var(--heroContent-heading-tb);
+	}
+}
+
+@media screen and (min-width: 481px) and (max-width: 1023px) {
+	.content {
+		width: 90%;
+	}
+}
+
+@media screen and (max-width: 480px) {
+	.content {
+		width: 100%;
+	}
+
+	.tag,
+	.description {
+		font-size: var(--heroContent-tag-mb);
+	}
+
+	.heading {
+		font-size: var(--heroContent-heading-mb);
+	}
+	.buttonSection {
+		gap: 11px;
+	}
+}

@@ -15,7 +15,7 @@ const nextConfig: NextConfig = {
       },
     ],
     // Disable image optimization caching to reduce memory usage
-    unoptimized: true,
+    // unoptimized: true,
   },
   // Optimize resource loading
   experimental: {

@@ -14,18 +14,41 @@ const nextConfig: NextConfig = {
         pathname: "/**",
       },
     ],
+    // Disable image optimization caching to reduce memory usage
+    unoptimized: true,
   },
   // Optimize resource loading
   experimental: {
     optimizePackageImports: ["swiper"],
   },
-  // Enable compression
-  compress: true,
+  // Disable compression to reduce memory buffers
+  compress: false,
   onDemandEntries: {
-    // Increased from 60s to 5 minutes to reduce page recreation frequency
-    // This balances memory usage with performance by keeping recently used pages in memory
-    maxInactiveAge: 5 * 60 * 1000, // 5 minutes
-    pagesBufferLength: 3,
+    // Minimize memory retention - pages are evicted quickly
+    maxInactiveAge: 60 * 1000, // 60 seconds (minimal retention)
+    pagesBufferLength: 0, // No page buffer to reduce memory usage
+  },
+  // Disable caching headers
+  async headers() {
+    return [
+      {
+        source: "/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0",
+          },
+          {
+            key: "Pragma",
+            value: "no-cache",
+          },
+          {
+            key: "Expires",
+            value: "0",
+          },
+        ],
+      },
+    ];
   },
   // Ignore build errors
   typescript: {

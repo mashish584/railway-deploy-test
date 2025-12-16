@@ -1,35 +1,76 @@
 import { IMAGES } from "./images";
-import antPestStudyData from "./pests/ant-pest-study";
-import bedBugsPestStudyData from "./pests/bed-bugs-pest-study";
-import beePestStudyData from "./pests/bee-pest-study";
-import birdPestStudyData from "./pests/bird-pest-study";
-import carpetBeetlePestStudyData from "./pests/carpet-beetle-pest-study";
-import cockroachPestStudyData from "./pests/cockroach-pest-study";
-import fliesPestStudyData from "./pests/fly-pest-study";
-import mosquitoPestStudyData from "./pests/mosquito-pest-study";
-import possumPestStudyData from "./pests/possum-pest-study";
-import ratsMicePestStudyData from "./pests/rats-mice-pest-study";
-import spiderPestStudyData from "./pests/spider-pest-study";
-import storedProductPestStudyData from "./pests/stored-product-pest-study";
-import waspsPestStudyData from "./pests/wasps-pest-study";
 
-export const pestPages = {
-	"ant-pest-control-sydney": antPestStudyData,
-	"bed-bug-pest-control": bedBugsPestStudyData,
-	"bee-pest-control": beePestStudyData,
-	"bird-pest-control": birdPestStudyData,
-	"carpet-beetle-pest-control": carpetBeetlePestStudyData,
-	"cockroach-pest-control": cockroachPestStudyData,
-	"fly-pest-control": fliesPestStudyData,
-	"mosquito-pest-control": mosquitoPestStudyData,
-	"possum-pest-control": possumPestStudyData,
-	"rats-mice-pest-control": ratsMicePestStudyData,
-	"spider-pest-control-study": spiderPestStudyData,
-	"stored-product-pests-control": storedProductPestStudyData,
-	"wasp-pest-control": waspsPestStudyData,
+// Type definition for pest pages keys
+export type PestPages =
+	| "ant-pest-control-sydney"
+	| "bed-bug-pest-control"
+	| "bee-pest-control"
+	| "bird-pest-control"
+	| "carpet-beetle-pest-control"
+	| "cockroach-pest-control"
+	| "fly-pest-control"
+	| "mosquito-pest-control"
+	| "possum-pest-control"
+	| "rats-mice-pest-control"
+	| "spider-pest-control-study"
+	| "stored-product-pests-control"
+	| "wasp-pest-control";
+
+// Lazy loading map for pest study data - only loads when accessed
+const pestStudyLoaders: Record<PestPages, () => Promise<any>> = {
+	"ant-pest-control-sydney": () => import("./pests/ant-pest-study").then((m) => m.default),
+	"bed-bug-pest-control": () => import("./pests/bed-bugs-pest-study").then((m) => m.default),
+	"bee-pest-control": () => import("./pests/bee-pest-study").then((m) => m.default),
+	"bird-pest-control": () => import("./pests/bird-pest-study").then((m) => m.default),
+	"carpet-beetle-pest-control": () => import("./pests/carpet-beetle-pest-study").then((m) => m.default),
+	"cockroach-pest-control": () => import("./pests/cockroach-pest-study").then((m) => m.default),
+	"fly-pest-control": () => import("./pests/fly-pest-study").then((m) => m.default),
+	"mosquito-pest-control": () => import("./pests/mosquito-pest-study").then((m) => m.default),
+	"possum-pest-control": () => import("./pests/possum-pest-study").then((m) => m.default),
+	"rats-mice-pest-control": () => import("./pests/rats-mice-pest-study").then((m) => m.default),
+	"spider-pest-control-study": () => import("./pests/spider-pest-study").then((m) => m.default),
+	"stored-product-pests-control": () => import("./pests/stored-product-pest-study").then((m) => m.default),
+	"wasp-pest-control": () => import("./pests/wasps-pest-study").then((m) => m.default),
 };
 
-export type PestPages = keyof typeof pestPages;
+// Cache for loaded pest study data to avoid re-importing
+const pestStudyCache: Record<PestPages, any> = {} as Record<PestPages, any>;
+
+/**
+ * Lazy loads pest study data for a given pest page key.
+ * Data is cached after first load to avoid re-importing.
+ */
+export async function getPestStudyData(key: PestPages): Promise<any> {
+	if (pestStudyCache[key]) {
+		return pestStudyCache[key];
+	}
+
+	const loader = pestStudyLoaders[key];
+	if (!loader) {
+		throw new Error(`No pest study data found for key: ${key}`);
+	}
+
+	const data = await loader();
+	pestStudyCache[key] = data;
+	return data;
+}
+
+/**
+ * Synchronous accessor for pest study data (for backwards compatibility).
+ * Note: This will throw if data hasn't been loaded yet. Use getPestStudyData() to load it asynchronously first.
+ */
+export function getPestStudyDataSync(key: PestPages): any {
+	if (!pestStudyCache[key]) {
+		throw new Error(
+			`Pest study data for "${key}" has not been loaded yet. Use getPestStudyData() to load it asynchronously first.`
+		);
+	}
+	return pestStudyCache[key];
+}
+
+// Legacy export for backwards compatibility - returns empty object to avoid eager loading
+// Components should use getPestStudyData() instead
+export const pestPages: Record<PestPages, any> = {} as any;
 
 export const pestData = [
 	{
